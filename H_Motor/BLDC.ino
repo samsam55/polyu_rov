@@ -1,5 +1,5 @@
 void BLDC_filterOutput() {
-  short V_BLDC_OUT[4] = {1500 - yaw_Out, 1500 - yaw_Out, 1500 - yaw_Out, 1500 - yaw_Out};
+  short V_BLDC_OUT[4] = {1500 + yaw_Out, 1500 + yaw_Out, 1500 + yaw_Out, 1500 + yaw_Out};
   short V_COM_OUT[4], angle;
 
   if (com_angle >= -45 && com_angle <= 45) {

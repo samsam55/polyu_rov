@@ -12,7 +12,7 @@ SoftwareSerial prPort(8, 9);
 Servo V_BLDC_1, V_BLDC_2;
 MS5803 sensor(ADDRESS_HIGH);
 
-boolean depth_PID_OnOff = true, pitch_PID_OnOff = true;
+boolean depth_PID_OnOff = false, pitch_PID_OnOff = false;
 short depth_setPt, pitch_setPt, roll_setPt, pr[2], last_pr[2];
 short V_BLDC[2] = {1500, 1500}, Last_V_BLDC[2] = {1500, 1500};
 float error = 0.0, r = 1.706109235, q = 0.05, p = 1.0, k = 0.0, f_depth_cm = 0.0;
