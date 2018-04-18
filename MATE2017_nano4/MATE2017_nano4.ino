@@ -54,7 +54,7 @@ void motor (int i, byte s) {
   }
 
   else if (s == 2) {
-    digitalWrite(pin_motor[i][1], LOW);
+    digitalWrite(pin_motor[i][0], LOW);
     digitalWrite(pin_motor[i][1], HIGH);
   }
 }
