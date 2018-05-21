@@ -35,9 +35,6 @@ void loop() {
         byte fake[7];
         Serial.readBytes(fake, 7);
         break;
-      // case 0xC2:
-      //   sensor();
-      //   break;
       case 0xF1:
         Serial.write(0xF2);
         Serial.write(0xC1);

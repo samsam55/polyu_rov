@@ -11,11 +11,11 @@ const int ARMINSIZE = 2;
 
 // Pins' number.
 //                           Cam1 Cam2 Cam3 Cam4 Cam5 Cam6 Cam7 Cam8
-const int CAM[ CAMSIZE ] = {   A0,  A1,  A2,  A3,  A4,  A5,  A6,  A7 };
+const int CAM[ CAMSIZE ] = {   A1,  A3,  A6,  A0,  A2,  A5,  A4,  A7 };
 //                               Gripper1 Cylinder Gripper2
 const int VALVE[ VALVESIZE ] = {   32   ,      30 };
 //                                             Arm1 UP DOWN   Arm2 UP DOWN   Arm3 UP DOWN Arm4 UP DOWN
-const int ARM[ ARMOUTSIZE ][ ARMINSIZE ] = {  { 42,  44 }, { 50,  52 },  {36, 38},  { 48, 46  },   {28, 34},  {32, 30},  {34, 28}}; //{ 42,  44 }, { 50,  52 },  {36, 38},  { 48, 46  },   {28, 34},  {32, 30},  {34, 28}
+const int ARM[ ARMOUTSIZE ][ ARMINSIZE ] = {  { 50,  52 }, { 42,  44 },   {38, 36},  { 46, 48  },   {28, 34},  {32, 30},  {34, 28}}; //{ 42,  44 }, { 50,  52 },  {36, 38},  { 48, 46  },   {28, 34},  {32, 30},  {34, 28}
 // Bitstream memory.
 //                      Cam1 Cam2 Cam3 Cam4 Cam5 Cam6 Cam7 Cam8
 byte cam[ CAMSIZE ] = {    0,   0,   0,   0,   0,   0,   0,   0 }; // 0s' will be changed to [0,180].
@@ -66,10 +66,8 @@ void loop()
   {
     int valInt = analogRead( CAM[ camIdx ] );
     valInt = map( valInt, 0, 1023, 180, 0 );
-    if (camIdx == 0||camIdx == 1|| camIdx == 5|| camIdx == 6)
+    if ( camIdx == 1 || camIdx == 5 || camIdx == 6)
       valInt = map( valInt, 180, 0, 0, 180 );
-    //if (camIdx == 7)
-    //valInt = 90;
     byte val = ( byte ) ( valInt );
     if ( abs( cam[ camIdx ] - val ) >= CAMUPDATEMARGIN )
     {
@@ -127,14 +125,14 @@ void loop()
       --updateCamIdle;
     }
   }
-/*
-  if ( isUpdatedValve )
-  {
-    // Serial write of valve.
-    Serial.write( byte( 0xD1 ) );
-    Serial.write( valve, VALVESIZE );
-  }
-*/
+  /*
+    if ( isUpdatedValve )
+    {
+      // Serial write of valve.
+      Serial.write( byte( 0xD1 ) );
+      Serial.write( valve, VALVESIZE );
+    }
+  */
   if ( isUpdatedArm )
   {
     // Serial write of arm.
